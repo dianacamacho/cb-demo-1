@@ -1,0 +1,638 @@
+  [1m[36m (26.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (2.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProfessors (20160723035734)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (16.4ms)[0m  [1mCREATE TABLE "professors" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160723035734"]]
+  [1m[36m (5.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateExpertises (20160723035759)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (13.5ms)[0m  [1mCREATE TABLE "expertises" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160723035759"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateJoinTableExpertiseProfessor (20160723035823)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "expertises_professors" ("expertise_id" integer NOT NULL, "professor_id" integer NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160723035823"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'expertises'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'expertises_professors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'professors'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/" for ::1 at 2016-07-22 23:05:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (2.3ms)
+Completed 200 OK in 26ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-07-22 23:05:26 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/employers/sign_out" for ::1 at 2016-07-22 23:05:28 -0500
+
+ActionController::RoutingError (No route matches [GET] "/employers/sign_out"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (9.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (131.7ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (90.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (181.4ms)
+
+
+Started GET "/" for ::1 at 2016-07-22 23:05:29 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:05:31 -0500
+Processing by ExpertisesController#index as HTML
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 2.0ms)
+
+NoMethodError (undefined method `has_many_and_belongs_to_many' for #<Class:0x007fead131d1c0>):
+  app/models/expertise.rb:2:in `<class:Expertise>'
+  app/models/expertise.rb:1:in `<top (required)>'
+  app/controllers/expertises_controller.rb:7:in `index'
+
+
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (90.9ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (67.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (148.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:05:58 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[35mExpertise Load (0.5ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered expertises/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 988ms (Views: 972.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/expertises.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-22 23:05:59 -0500
+
+
+Started GET "/assets/scaffolds.self-0a8443de35cfb46fd63c8e5875719d068c1cae1f25b9fabcc320644a44947755.css?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/professors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/expertises.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/professors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-07-22 23:06:00 -0500
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:02 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (11.8ms)
+  Rendered expertises/new.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 68ms (Views: 52.6ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:08 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nYoDGWNPxB8BeFc7RIsdXCNM2b6fF+IiO4lgDmXxos1XEgA5Zrl9x1xgAlrDdlEzDofTCjAv+TCyUpP6lqDF7A==", "expertise"=>{"name"=>"Ruby"}, "commit"=>"Create Expertise"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Ruby"], ["created_at", "2016-07-23 04:06:08.324104"], ["updated_at", "2016-07-23 04:06:08.324104"]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/expertises/1
+Completed 302 Found in 16ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/expertises/1" for ::1 at 2016-07-22 23:06:08 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered expertises/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 31ms (Views: 19.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:11 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[36mExpertise Load (0.4ms)[0m  [1mSELECT "expertises".* FROM "expertises"[0m
+  Rendered expertises/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 29ms (Views: 27.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:12 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (1.5ms)
+  Rendered expertises/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 26ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:14 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B2iKbZe6VawGKr4oU24yBHejf8bDuaXtQjnT4kmJZIjN8IlNkkzsdFsy60nUk35rWmh1cmyBvv/L4iAWutgDqQ==", "expertise"=>{"name"=>"Rails"}, "commit"=>"Create Expertise"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Rails"], ["created_at", "2016-07-23 04:06:14.783011"], ["updated_at", "2016-07-23 04:06:14.783011"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/expertises/2
+Completed 302 Found in 7ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/expertises/2" for ::1 at 2016-07-22 23:06:14 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mExpertise Load (0.3ms)[0m  [1mSELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered expertises/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:15 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered expertises/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:17 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (2.3ms)
+  Rendered expertises/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 33ms (Views: 32.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:22 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ddYCLd/gqVDkWgZEgYEib2p0dhGxBX50zMwpsF43D3S/TgEN2hYQiLlCUyUGfG4AR798pR49ZWZFF9pErWZoVQ==", "expertise"=>{"name"=>"Python"}, "commit"=>"Create Expertise"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Python"], ["created_at", "2016-07-23 04:06:22.010120"], ["updated_at", "2016-07-23 04:06:22.010120"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/expertises/3
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/expertises/3" for ::1 at 2016-07-22 23:06:22 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered expertises/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:23 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[36mExpertise Load (0.4ms)[0m  [1mSELECT "expertises".* FROM "expertises"[0m
+  Rendered expertises/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 26ms (Views: 25.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:24 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (1.3ms)
+  Rendered expertises/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 24ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:27 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SMQqHSwrrPInwDf6era1Krw0rIAJU6ccHvtkJNemoM+CXCk9Kd0VKnrYYpv9S/lFkf+mNKZrvA6XIJfQJPfH7g==", "expertise"=>{"name"=>"Java"}, "commit"=>"Create Expertise"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Java"], ["created_at", "2016-07-23 04:06:27.204307"], ["updated_at", "2016-07-23 04:06:27.204307"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/expertises/4
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/expertises/4" for ::1 at 2016-07-22 23:06:27 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mExpertise Load (0.3ms)[0m  [1mSELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered expertises/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:28 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[35mExpertise Load (0.4ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered expertises/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 22ms (Views: 20.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:29 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (2.0ms)
+  Rendered expertises/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 25ms (Views: 24.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:33 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lyGzBcL0Z1QIDwOtTs6//VdpmSixfUr2qsqaWk7O4qVdubAlxwLejFUXVszJM/OSeqKTnB5FUeQjEWmuvZ+FhA==", "expertise"=>{"name"=>"PHP"}, "commit"=>"Create Expertise"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "PHP"], ["created_at", "2016-07-23 04:06:33.117191"], ["updated_at", "2016-07-23 04:06:33.117191"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/expertises/5
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/expertises/5" for ::1 at 2016-07-22 23:06:33 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered expertises/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:34 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[36mExpertise Load (1.9ms)[0m  [1mSELECT "expertises".* FROM "expertises"[0m
+  Rendered expertises/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 29ms (Views: 26.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:35 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (3.3ms)
+  Rendered expertises/new.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 27ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:39 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VEJazJJ4ScyEujo/9OXd9NR1fpqD+jnhq8wRy/3IeNue2lnsl47wFNmib15zGJGb+b50LizCIvMiF+I/Dpkf+g==", "expertise"=>{"name"=>"javascript"}, "commit"=>"Create Expertise"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "javascript"], ["created_at", "2016-07-23 04:06:39.530971"], ["updated_at", "2016-07-23 04:06:39.530971"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/expertises/6
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/expertises/6" for ::1 at 2016-07-22 23:06:39 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mExpertise Load (0.2ms)[0m  [1mSELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  Rendered expertises/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 20.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:41 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[35mExpertise Load (0.5ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered expertises/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 27ms (Views: 25.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/expertises/new" for ::1 at 2016-07-22 23:06:42 -0500
+Processing by ExpertisesController#new as HTML
+  Rendered expertises/_form.html.erb (2.1ms)
+  Rendered expertises/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 35ms (Views: 33.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/expertises" for ::1 at 2016-07-22 23:06:45 -0500
+Processing by ExpertisesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tWcklO1XtClyKvciz+mBjUL6RBqZwpqZjr9jOVbcxrZ//ye06KEN8S8yokNIFM3ibzFOrjb6gYsHZJDNpY2hlw==", "expertise"=>{"name"=>"Angualr"}, "commit"=>"Create Expertise"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "expertises" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Angualr"], ["created_at", "2016-07-23 04:06:45.869585"], ["updated_at", "2016-07-23 04:06:45.869585"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/expertises/7
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/expertises/7" for ::1 at 2016-07-22 23:06:45 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mExpertise Load (0.2ms)[0m  SELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1  [["id", 7]]
+  Rendered expertises/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 20ms (Views: 19.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:47 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[36mExpertise Load (0.3ms)[0m  [1mSELECT "expertises".* FROM "expertises"[0m
+  Rendered expertises/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 25ms (Views: 24.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/expertises/6/edit" for ::1 at 2016-07-22 23:06:49 -0500
+Processing by ExpertisesController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1  [["id", 6]]
+  Rendered expertises/_form.html.erb (2.4ms)
+  Rendered expertises/edit.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/expertises/6" for ::1 at 2016-07-22 23:06:51 -0500
+Processing by ExpertisesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y2wkKpRkOlP7BiS+vlZeeThxV3Vp/iPZo1wZI5atj3cB9CcKkZKDi6Yecd85qxIWFbpdwcbGOMsqh+rXZfzoVg==", "expertise"=>{"name"=>"Javascript"}, "commit"=>"Update Expertise", "id"=>"6"}
+  [1m[36mExpertise Load (0.2ms)[0m  [1mSELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "expertises" SET "name" = $1, "updated_at" = $2 WHERE "expertises"."id" = $3[0m  [["name", "Javascript"], ["updated_at", "2016-07-23 04:06:51.964028"], ["id", 6]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/expertises/6
+Completed 302 Found in 6ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/expertises/6" for ::1 at 2016-07-22 23:06:51 -0500
+Processing by ExpertisesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mExpertise Load (0.2ms)[0m  [1mSELECT  "expertises".* FROM "expertises" WHERE "expertises"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  Rendered expertises/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/expertises" for ::1 at 2016-07-22 23:06:53 -0500
+Processing by ExpertisesController#index as HTML
+  [1m[35mExpertise Load (0.5ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered expertises/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 25ms (Views: 23.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/employers/sign_out" for ::1 at 2016-07-22 23:07:01 -0500
+
+ActionController::RoutingError (No route matches [GET] "/employers/sign_out"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (102.7ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (75.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (156.6ms)
+
+
+Started GET "/" for ::1 at 2016-07-22 23:07:01 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/projects/14" for ::1 at 2016-07-22 23:07:01 -0500
+
+ActionController::RoutingError (No route matches [GET] "/projects/14"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.7ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (106.8ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (72.5ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/dcam1901/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (152.6ms)
+
+
+Started GET "/professors" for ::1 at 2016-07-22 23:07:04 -0500
+Processing by ProfessorsController#index as HTML
+  [1m[36mProfessor Load (0.6ms)[0m  [1mSELECT "professors".* FROM "professors"[0m
+  Rendered professors/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 32ms (Views: 23.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/professors/new" for ::1 at 2016-07-22 23:07:07 -0500
+Processing by ProfessorsController#new as HTML
+  [1m[35mExpertise Load (0.4ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered professors/_form.html.erb (46.1ms)
+  Rendered professors/new.html.erb within layouts/application (48.6ms)
+Completed 200 OK in 73ms (Views: 67.8ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/professors" for ::1 at 2016-07-22 23:07:21 -0500
+Processing by ProfessorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9NCRCvJxYCB17ap2LM/J9qvTkZcKzEy8s7MoZ/zjJBU+SJIq94fZ+Cj1/xerMoWZhhibI6X0V646aNuTD7JDNA==", "professor"=>{"name"=>"Jane", "expertise_ids"=>["1", "4", "5", ""]}, "commit"=>"Create Professor"}
+  [1m[36mExpertise Load (0.8ms)[0m  [1mSELECT "expertises".* FROM "expertises" WHERE "expertises"."id" IN (1, 4, 5)[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "professors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Jane"], ["created_at", "2016-07-23 04:07:21.660291"], ["updated_at", "2016-07-23 04:07:21.660291"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)  [["expertise_id", 1], ["professor_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)[0m  [["expertise_id", 4], ["professor_id", 1]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)  [["expertise_id", 5], ["professor_id", 1]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/professors/1
+Completed 302 Found in 27ms (ActiveRecord: 9.6ms)
+
+
+Started GET "/professors/1" for ::1 at 2016-07-22 23:07:21 -0500
+Processing by ProfessorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProfessor Load (0.2ms)[0m  SELECT  "professors".* FROM "professors" WHERE "professors"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered professors/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 20.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/professors" for ::1 at 2016-07-22 23:07:23 -0500
+Processing by ProfessorsController#index as HTML
+  [1m[36mProfessor Load (1.7ms)[0m  [1mSELECT "professors".* FROM "professors"[0m
+  Rendered professors/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/professors/1" for ::1 at 2016-07-22 23:07:25 -0500
+Processing by ProfessorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProfessor Load (0.3ms)[0m  SELECT  "professors".* FROM "professors" WHERE "professors"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered professors/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/professors" for ::1 at 2016-07-22 23:07:26 -0500
+Processing by ProfessorsController#index as HTML
+  [1m[36mProfessor Load (1.1ms)[0m  [1mSELECT "professors".* FROM "professors"[0m
+  Rendered professors/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 24ms (Views: 22.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/professors/new" for ::1 at 2016-07-22 23:07:28 -0500
+Processing by ProfessorsController#new as HTML
+  [1m[35mExpertise Load (0.3ms)[0m  SELECT "expertises".* FROM "expertises"
+  Rendered professors/_form.html.erb (6.7ms)
+  Rendered professors/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 29ms (Views: 27.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/professors" for ::1 at 2016-07-22 23:07:33 -0500
+Processing by ProfessorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VsBWwlY3rUs3NJa6LTnl/Jt6ftiz3UdRcaKkPkREewmcWFXiU8EUk2osw9uqxKmTtrF0bBzlXEP4eVfKtxUcKA==", "professor"=>{"name"=>"John", "expertise_ids"=>["1", "2", "7", "6", ""]}, "commit"=>"Create Professor"}
+  [1m[36mExpertise Load (0.6ms)[0m  [1mSELECT "expertises".* FROM "expertises" WHERE "expertises"."id" IN (1, 2, 7, 6)[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "professors" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "John"], ["created_at", "2016-07-23 04:07:33.856380"], ["updated_at", "2016-07-23 04:07:33.856380"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)  [["expertise_id", 1], ["professor_id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)[0m  [["expertise_id", 2], ["professor_id", 2]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)  [["expertise_id", 7], ["professor_id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "expertises_professors" ("expertise_id", "professor_id") VALUES ($1, $2)[0m  [["expertise_id", 6], ["professor_id", 2]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/professors/2
+Completed 302 Found in 19ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/professors/2" for ::1 at 2016-07-22 23:07:33 -0500
+Processing by ProfessorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProfessor Load (0.3ms)[0m  [1mSELECT  "professors".* FROM "professors" WHERE "professors"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered professors/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 21.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/professors" for ::1 at 2016-07-22 23:07:34 -0500
+Processing by ProfessorsController#index as HTML
+  [1m[35mProfessor Load (1.7ms)[0m  SELECT "professors".* FROM "professors"
+  Rendered professors/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 24ms (Views: 21.7ms | ActiveRecord: 1.7ms)
+  [1m[36mProfessor Load (1.2ms)[0m  [1mSELECT "professors".* FROM "professors"[0m
+  [1m[35mProfessor Load (1.3ms)[0m  SELECT  "professors".* FROM "professors"  ORDER BY "professors"."id" ASC LIMIT 1
+  [1m[36mExpertise Load (0.8ms)[0m  [1mSELECT "expertises".* FROM "expertises" INNER JOIN "expertises_professors" ON "expertises"."id" = "expertises_professors"."expertise_id" WHERE "expertises_professors"."professor_id" = $1[0m  [["professor_id", 1]]
