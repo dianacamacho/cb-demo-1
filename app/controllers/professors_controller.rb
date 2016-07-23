@@ -4,7 +4,8 @@ class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
   def index
-    @professors = Professor.all
+    @search = Professor.search(params[:q])
+    @professors = @search.result(distinct: true)
   end
 
   # GET /professors/1

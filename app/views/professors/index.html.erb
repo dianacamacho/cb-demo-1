@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Expertises</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @professors.each do |professor| %>
       <tr>
         <td><%= professor.name %></td>
+        <td><%= professor.expertises.map(&:name).sort.join(", ") %></td>
         <td><%= link_to 'Show', professor %></td>
         <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
         <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -21,6 +23,29 @@
     <% end %>
   </tbody>
 </table>
+<br>
+
+<fieldset class="search-field">
+  <legend>Search Our Database</legend>
+  <%= search_form_for @search do |f| %>
+    <div class="field">
+      <%= f.label :name_cont, "Name contains" %>
+      <%= f.text_field :name_cont %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Area of Expertise" %><br />
+      <%= f.collection_check_boxes :expertises_id_in_any, Expertise.all, :id, :name do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</fieldset>
 
 <br>
 
