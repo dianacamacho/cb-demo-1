@@ -7,10 +7,9 @@
       $http.get("/professors.json").then(function(response){
         $scope.professors = response.data;
       });
+      
       $http.get("/expertises.json").then(function(response){
         $scope.expertises = response.data;
-
-
       });  
 
     };

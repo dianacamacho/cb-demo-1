@@ -3,26 +3,6 @@
 <div ng-app="app">
   <div ng-controller="professorsCtrl" ng-init="setupProfessorIndex()">
 
-  <p>Search by prof expertise name: <input ng-model='profExpertiseNameFilter.expertises'></p>
-
-  <h2>Angular Professors</h2>
-
-  <ul>
-    <li ng-repeat="prof in professors | filter: {name: profExpertiseNameFilter }">{{ prof.name}}</li>
-  </ul>
-
-  <p>Search by expertise name: <input ng-model='expertiseNameFilter'></p>
-
-  <h2>Angular Expertises</h2>
-  <ul>
-    <li ng-repeat="exp in expertises | filter: {name: expertiseNameFilter}">{{ exp.name}}</li>
-  </ul>
-
-<multiple-autocomplete ng-model="selectedList"
-     object-property="name"
-     suggestions-arr="expertises">
-</multiple-autocomplete>
-
 <h1>Listing Professors</h1>
 
 <table>
@@ -73,6 +53,3 @@
 <br>
 
 <%= link_to 'New Professor', new_professor_path %>
-
-</div>
-</div>
